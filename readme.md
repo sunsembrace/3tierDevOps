@@ -179,6 +179,19 @@ Mindset: Always define response types explicitly to maintain strict data contrac
 3.4 Test --> run uvicorn app.main:app --reload
  and then check Swagger UI http://127.0.0.1:8000/docs then test post/books and see if you can enter date (works!!)
  
+ 3.5 Adjustment - Moved models.py content into schema.py for futuure database scalability and changed main.py to import from schema.py instead of models.py
+
+ 3.6 Get a Single Book by ID.
+ --> @app.get("/books/{book_id}", response_model=Book)
+What it does: Adds an endpoint /books/{book_id} that takes an ID from the URL, searches the books list for a match, and returns that book. If none is found, it raises an HTTPException with a 404 status.
+
+Why we do it: This lets clients fetch a single resource instead of the whole collection. Using HTTPException ensures the API follows HTTP standards for missing resources, improving clarity and error handling.
+
+Mindset: Think of it like a database lookup — every request should either return exactly what was asked for or give a clear, standard error so the client knows what went wrong.
+
+
+
+ #########################
 Problems solved.
 Problem: Was trying to test WebApp running from local host but couldn't connect. Problem? main.py was within the /app dir not in the root folder hence the error.
 Solution: just move main.py to root folder and then run --> uvicorn main:app --reload
@@ -188,3 +201,5 @@ Problem: was using dict() when tryting to make a model but had to use newer vers
 Problem: Wanted to make it more robust on get_books in main.py
 Added response_model=List[Book]
 ensures GET return books in the correct format. 
+
+Problem: Had to move models.py content to schemas.py (the pydantic model) as models.py is for future database scalability. 

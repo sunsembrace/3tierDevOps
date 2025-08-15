@@ -1,5 +1,5 @@
 #Entry point of backend.
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from app.config import books
 from app.schemas import Book
 from typing import List
@@ -18,3 +18,10 @@ def get_books():
 def add_book(book: Book):
     books.append(book.model_dump()) #Use model_dump()) instead of dict()
     return {"message": "book added successfully", "book": book}
+
+@app.post("/books/{book_id}", response_model=Book)
+def get_book(book_id: int):
+    for book in books:
+        if book["id"] == book_id:
+            return book
+    raise HTTPException(status_code=404, detail="Book not found")
