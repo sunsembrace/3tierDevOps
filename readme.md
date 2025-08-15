@@ -138,7 +138,8 @@ Why we do it: Provides the first “real” API resource to test retrieval.
 Mindset: Build one feature at a time; start with reading data before writing or updating.
 
 3.3 Test --> uvicorn app.main:app --reload
-Go to link and it should show the initial message and books list.
+then go to http://127.0.0.1:8000/books 
+Go to link and it should show the books list. because of our @app.get("/books") & the function get_books 
 
 ############################
 Problems solved.
