@@ -205,13 +205,21 @@ What it does: Removes a book by its ID.
 Why we do it: Enables safe deletion with feedback and error handling.
 Mindset: Avoid silently failing operations; always confirm the action.
 
+3.7& 3.8 test
+--> uvicorn app.main:app --reload
+--> http://127.0.0.1:8000/docs
 
 
+3.9 - Refactorin/making more modular so moving all /book endpoints into routers/book.py
+What it does: keeps main.py from getting messy and keeps it clean.
+Why we do it: Better scalability.
+Mindset: Organize early. Makes it ready for a database without rewriting endpoints.
 
 
-
-
-
+3.10 Trying to test yet issue arose 
+--> AttributeError: 'list' object has no attribute 'router'
+This is because my book is currently a list, not a router object. FastAPI routers must be created using APIrouter().
+Solution: from app.routers import books  # to include the router in main.py and remove the pre-existing libraries (except from fastapi import FastAPI) as they now lived in routers/books.py
 
 
 
@@ -243,3 +251,7 @@ ensures GET return books in the correct format.
 
 Problem: Had to move models.py content to schemas.py (the pydantic model) as models.py is for future database scalability. 
 
+Problem: in step 3.10 after moving functions into routers/book.py--> uvicorn app.main:app --reload wont work.
+--> AttributeError: 'list' object has no attribute 'router'
+This is because my book is currently a list, not a router object. FastAPI routers must be created using APIrouter().
+Solution: from app.routers import books  # to include the router in main.py and remove the pre-existing libraries (except from fastapi import FastAPI) as they now lived in routers/books.py
