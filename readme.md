@@ -176,3 +176,7 @@ Problem: Was trying to test WebApp running from local host but couldn't connect.
 Solution: just move main.py to root folder and then run --> uvicorn main:app --reload
 
 Problem: was using dict() when tryting to make a model but had to use newer version which is model_dump() to convert book model isntance into plaint dict to append into book list. FastAPI and pydantic v2 use model_dump() to avoid confusion with internal Pydantic methods.
+
+Problem: Wanted to make it more robust on get_books in main.py
+Added response_model=List[Book]
+ensures GET return books in the correct format. 

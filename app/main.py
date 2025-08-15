@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from app.config import books
 from app.models import Book
+from typing import List
 
 app = FastAPI(title="Quillstack Bookstore")
 
@@ -9,7 +10,7 @@ app = FastAPI(title="Quillstack Bookstore")
 def root():
     return {"message": "BookStore API is running!"}
 
-@app.get("/books")
+@app.get("/books", response_model=List[Book])
 def get_books():
     return books
 
