@@ -19,3 +19,23 @@ venv/ --> paste into .gitignore so we dont push virtual environment.
 
 note: venv is common name for environment folder, can call it anything.
 
+#Starting project
+3. Starting the BackEnd skeleton.
+Chose FastAPI as my Python Framework as its more modern, job-friendly and easy to expand into APIs.
+
+3TierDevOps/
+│
+├─ venv/                  # your virtual environment (already done)
+├─ app/                   # main application folder
+│   ├─ __init__.py
+│   ├─ main.py             # entry point of backend
+│   ├─ config.py           # config settings like DB connection strings, environment variables
+│   ├─ models.py           # data models (empty for now, will use DB later)
+│   ├─ schemas.py          # request/response structures (for APIs)
+│   └─ routes/             # folder for route definitions
+│       ├─ __init__.py
+│       └─ books.py        # endpoints for books
+│
+├─ tests/                  # later for unit tests
+├─ requirements.txt        # track dependencies
+└─ .gitignore              # exclude venv, __pycache__, etc.
