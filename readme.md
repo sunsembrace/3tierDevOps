@@ -93,3 +93,52 @@ Why we do it: FastAPI routes always need a function handler. Think of it as the 
 What it does: Sends a JSON response back to the client.
 Why we do it: APIs communicate with structured data (JSON is standard).
 Mindset: Even for dummy data, it’s good to return meaningful JSON so frontend or other services can integrate easily later.
+
+3.2 Test --> Test it works on localhost webapp & it does (problem solved).
+
+3.3 Define book endpoint
+API just confirms its running but a bookstore API needs functionality e.g returning books. Keeping data in-memory first, so i dont worry aboput database now.
+Teaches me how to define multiple endpoints (/ vs books)
+Using in-memory list like a minidatabase.
+Adding type hints / response mopdels to simulate proper API contracts.
+Testing fucntionality via url localhost link in browser.
+
+--> from fastapi import FastAPI
+--> from typing import List
+What it does: Brings in FastAPI and type hints for lists.
+Why we do it: Needed to create endpoints and document response types.
+Mindset: Always import what you know you’ll need upfront; sets the 
+
+--> app = FastAPI(title="QuillStack Bookstore")
+What it does: Creates the FastAPI app object.
+Why we do it: All endpoints attach to this app; title appears in Swagger docs.
+Mindset: Initialize core objects before adding logic.
+
+--> books = [
+    {"id": 1, "title": "The Arcane Codex", "author": "A. Mage"},
+    {"id": 2, "title": "DevOps Alchemy", "author": "B. Builder"}
+]
+What it does: Stores a list of book dictionaries.
+Why we do it: Allows testing endpoints without a real database.
+Mindset: Keep it simple first; focus on functionality before persistence.
+
+--> @app.get("/")
+def root():
+    return {"message": "BookStore API is running!"}
+
+What it does: Responds to / requests with a simple message.
+Why we do it: Confirms the app is running; useful for debugging and health checks.
+Mindset: Verify basics work before adding complexity.
+
+--> @app.get("/books", response_model=List[dict])
+def get_books():
+    return books
+What it does: Returns the list of books.
+Why we do it: Provides the first “real” API resource to test retrieval.
+Mindset: Build one feature at a time; start with reading data before writing or updating.
+
+
+############################
+Problems solved.
+Problem: Was trying to test WebApp running from local host but couldn't connect. Problem? main.py was within the /app dir not in the root folder hence the error.
+Solution: just move main.py to root folder and then run --> uvicorn main:app --reload
