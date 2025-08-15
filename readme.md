@@ -199,8 +199,11 @@ What it does: Replaces an existing book with new data.
 Why we do it: Lets users modify book info safely by ID.
 Mindset: Always validate existence before updating; maintain data consistency.
 
-
-
+3.8 Delete a book.
+--> @app.delete("/books/{book_id}")
+What it does: Removes a book by its ID.
+Why we do it: Enables safe deletion with feedback and error handling.
+Mindset: Avoid silently failing operations; always confirm the action.
 
 
 

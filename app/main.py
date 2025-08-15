@@ -36,3 +36,12 @@ def update_book(book_id: int, updated_book:Book):
             books[i] = updated_book.model_dump() #replace old book.
             return books[i]
     raise HTTPException(status_code=404, detail="Book not found")
+
+#Delete a book.
+@app.delete("/book{book_id}")
+def delete_book(book_id: int):
+    for i, book in enumerate(books):
+        if book["id"] == book_id:
+            books.pop(i)
+            return {"message": "Book deleted successfully"}
+    raise HTTPException(status_code=404, detail="Book not found")
