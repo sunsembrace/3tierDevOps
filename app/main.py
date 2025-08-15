@@ -1,6 +1,7 @@
 #Entry point of backend.
 from fastapi import FastAPI
 from app.config import books
+from app.models import Book
 
 app = FastAPI(title="Quillstack Bookstore")
 
@@ -11,3 +12,8 @@ def root():
 @app.get("/books")
 def get_books():
     return books
+
+@app.post("/books")
+def add_book(book: Book):
+    books.append(book.model_dump()) #Use model_dump()) instead of dict()
+    return {"message": "book added successfully", "book": book}

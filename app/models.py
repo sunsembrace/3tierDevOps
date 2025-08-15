@@ -5,4 +5,3 @@ class Book(BaseModel):
     title: str
     author: str 
 
-    
