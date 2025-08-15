@@ -189,6 +189,42 @@ Why we do it: This lets clients fetch a single resource instead of the whole col
 
 Mindset: Think of it like a database lookup — every request should either return exactly what was asked for or give a clear, standard error so the client knows what went wrong.
 
+3.6 Test --> run uvicorn app.main:app --reload
+ and then check Swagger UI http://127.0.0.1:8000/docs then test post/books/{book_id} and see if you can enter id (works!!)
+
+ 3.7 Update a Book 
+--> @app.put("/books/{book_id}", response_model=Book)
+
+What it does: Replaces an existing book with new data.
+Why we do it: Lets users modify book info safely by ID.
+Mindset: Always validate existence before updating; maintain data consistency.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  #########################
@@ -203,3 +239,4 @@ Added response_model=List[Book]
 ensures GET return books in the correct format. 
 
 Problem: Had to move models.py content to schemas.py (the pydantic model) as models.py is for future database scalability. 
+
