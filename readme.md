@@ -9,9 +9,9 @@ Clean start - ensures your libraries you install are only for this project.
 How to do it?
 cd path/to/3tierDevOps
 
-python -m venv venv
+--> python -m venv venv
 
-.\venv\Scripts\Activate
+--> .\venv\Scripts\Activate
 
 is a success if you see "(venv) PS C:\Users\squid\Downloads\VSCselfprojects2025\3TierDevOps>"
 
@@ -39,3 +39,13 @@ Chose FastAPI as my Python Framework as its more modern, job-friendly and easy t
 ├─ tests/                  # later for unit tests
 ├─ requirements.txt        # track dependencies
 └─ .gitignore              # exclude venv, __pycache__, etc.
+
+3.1 Install FastAPI and Uvicorn.
+--> pip install fastapi uvicorn
+Why? FastAPI provides backend framework & Uvicorn provides server for running FastAPI.
+
+Then freeze versions in requirements.txt
+--> pip freeze > requirements.txt
+
+Why? Makes project reproducible for other team members or deployment.
+
