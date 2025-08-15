@@ -1,7 +1,7 @@
 #Entry point of backend.
 from fastapi import FastAPI
 from app.config import books
-from app.models import Book
+from app.schemas import Book
 from typing import List
 
 app = FastAPI(title="Quillstack Bookstore")

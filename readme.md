@@ -171,6 +171,14 @@ What it does: Defines a POST endpoint /books that takes a Book object from the r
 Why we do it: This allows the API to accept and store new books dynamically. Using model_dump() ensures the Pydantic Book object is converted to a plain dictionary that can be added to the in-memory list.
 Mindset: Think in terms of CRUD operations. This is the Create step: validating input, adding it to storage, and providing feedback to the user in a structured, predictable way.
 
+--> added resonse_model=List[Book]
+What it does: List from typing defines the response type as a list of Book objects, so response_model=List[Book] tells FastAPI to validate and serialize each item against the Book schema.
+Why we do it: Enforces type safety, ensures consistent response formatting, and auto-generates precise OpenAPI documentation.
+Mindset: Always define response types explicitly to maintain strict data contracts between your API and its consumers.
+
+3.4 Test --> run uvicorn app.main:app --reload
+ and then check Swagger UI http://127.0.0.1:8000/docs then test post/books and see if you can enter date (works!!)
+ 
 Problems solved.
 Problem: Was trying to test WebApp running from local host but couldn't connect. Problem? main.py was within the /app dir not in the root folder hence the error.
 Solution: just move main.py to root folder and then run --> uvicorn main:app --reload
