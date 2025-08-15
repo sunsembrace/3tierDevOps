@@ -137,6 +137,8 @@ What it does: Returns the list of books.
 Why we do it: Provides the first “real” API resource to test retrieval.
 Mindset: Build one feature at a time; start with reading data before writing or updating.
 
+3.3 Test --> uvicorn app.main:app --reload
+Go to link and it should show the initial message and books list.
 
 ############################
 Problems solved.
