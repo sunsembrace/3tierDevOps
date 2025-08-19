@@ -255,3 +255,5 @@ Problem: in step 3.10 after moving functions into routers/book.py--> uvicorn app
 --> AttributeError: 'list' object has no attribute 'router'
 This is because my book is currently a list, not a router object. FastAPI routers must be created using APIrouter().
 Solution: from app.routers import books  # to include the router in main.py and remove the pre-existing libraries (except from fastapi import FastAPI) as they now lived in routers/books.py
+
+Architectural decision problem: SO i initially stored data in a list with a dict? for testing purposes (but issue is data gets wiped for each run so we need a DB), so i was thinking SQLite for local testing and far faster as it runs as a file with no need for installation/configuration nor concerns about DB connection issues. However, I opt'd for PostgreSQL as its more production like and closer to real working environments and I can spend more time troubleshooting on this than changing from SQLite to PostgreSQL. This meant I had to make a docker for my app to run it later with postgreSQL in containers with a single docker-compose up.
