@@ -3,19 +3,20 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.db
-*.sqlite3
 
 # Virtual environments
 venv/
-.env/
+.env
 
-# VSCode
-.vscode/
-
-# OS junk
-.DS_Store
-Thumbs.db
+# Git
+.git/
+.gitignore
 
 # Docker
-*.log
+Dockerfile
+.dockerignore
+
+# IDE / OS
+.vscode/
+.DS_Store
+Thumbs.db
