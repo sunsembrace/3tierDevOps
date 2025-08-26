@@ -221,7 +221,8 @@ Mindset: Organize early. Makes it ready for a database without rewriting endpoin
 This is because my book is currently a list, not a router object. FastAPI routers must be created using APIrouter().
 Solution: from app.routers import books  # to include the router in main.py and remove the pre-existing libraries (except from fastapi import FastAPI) as they now lived in routers/books.py
 
-
+3.11 Created DockerFile for app.
+--> Installed Postgres dependency for integration later and saves us a headache.
 
 
 

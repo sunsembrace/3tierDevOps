@@ -1,5 +1,8 @@
-#Virtual Environment
-venv/
-
-#App
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.git/
+.env
+.DS_Store
