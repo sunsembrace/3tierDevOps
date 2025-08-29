@@ -1,0 +1,1 @@
+#Currently books.py in routers has crud logic with in-memory list and will move it here when DB is ready. 

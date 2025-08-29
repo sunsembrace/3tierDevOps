@@ -1,7 +1,7 @@
 # app/routers/books.py
 from fastapi import APIRouter, HTTPException
 from typing import List
-from app.schemas import Book
+from app.schemas.schemas import Book
 from app.config import books
 
 router = APIRouter()

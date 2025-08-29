@@ -226,13 +226,13 @@ Solution: from app.routers import books  # to include the router in main.py and 
 
 3.12 - Created .dockerignore to avoid bloating when i make container.
 
+Phase 2: DB integration.
 
+4. Creating new files/folder structure for better modularity and created a docker-compose.yml file to run postgres + app together later. Created New SQLAlchemy book model, new Pydantic schema for book, and new crud function for book.
 
-
-
-
-
-
+4.1 Install DB dependencies of SQLAlchemy with
+pip install sqlalchemy psycopg2-binary
+then pip freeze > requirements.txt
 
 
 
@@ -259,3 +259,39 @@ Solution: from app.routers import books  # to include the router in main.py and 
 
 Architectural decision problem: SO i initially stored data in a list with a dict? for testing purposes (but issue is data gets wiped for each run so we need a DB), so i was thinking SQLite for local testing and far faster as it runs as a file with no need for installation/configuration nor concerns about DB connection issues. However, I opt'd for PostgreSQL as its more production like and closer to real working environments and I can spend more time troubleshooting on this than changing from SQLite to PostgreSQL. This meant I had to make a docker for my app to run it later with postgreSQL in containers with a single docker-compose up.
 Made dockerfile have postgres install dependency beforehand to avoid issues on adjusting it later. 
+
+
+Architectural decision. Phase 2: DB integration.
+Rationale for using ORMs like SQLAlchemy before PostGre
+
+Why we don’t just “use PostgreSQL directly” with raw SQL
+
+ORMs like SQLAlchemy provide a layer of abstraction
+
+You define models in Python (Book class) instead of writing raw SQL queries for every operation.
+
+Makes code cleaner, safer, and easier to maintain.
+
+Junior+ engineers are expected to know ORMs in jobs; it’s a production best practice.
+
+Consistency with your app structure
+
+Right now, your FastAPI app works with Pydantic schemas.
+
+SQLAlchemy models map nicely to schemas, so your endpoints can stay almost the same.
+
+Portability & testing
+
+You can switch DBs (SQLite, Postgres, MySQL) with minimal code changes.
+
+Easier to test locally with SQLite before moving to Postgres container.
+
+Handles migrations & relationships
+
+Once you go multi-table or more complex logic, ORMs make it manageable.
+
+Raw SQL can become messy and error-prone.
+
+Phase 2 DB integration problems:
+problem: Need to move CRUD logic with in-memory list to own crud file for DB integration later. 
+This will help us integrate postgreSQL later so we dont have to refactor everything again.
