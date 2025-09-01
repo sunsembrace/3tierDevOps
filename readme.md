@@ -246,6 +246,11 @@ SessionLocal creates a session for DB transactions.
 Base is class my models will inherit to map tables.
 We do this to provide a single, reusable DB connection and ensure sessions are propertly managed (committed/rollback) and prepares for creating tables/crud operation.
 
+4.4 Define models using SQLAlchemy.
+Now need to define my ORM models in models.py to a database model.
+So it'll create a table schema for books in the database so SQLAlchemy uses these models to map python objects to DB tables.
+Aka this is the blueprint for data in my database.
+
 
  #########################
 Problems solved.
@@ -303,3 +308,5 @@ Raw SQL can become messy and error-prone.
 Phase 2 DB integration problems:
 problem: Need to move CRUD logic with in-memory list to own crud file for DB integration later. 
 This will help us integrate postgreSQL later so we dont have to refactor everything again.
+
+Problem: Have to convert previous book test list into tables in the db using sqlaclehmy. Therefore have to update CRUD operations to use database so instead of appending into the books = ... [] we use SQLAlchemy sessions.
