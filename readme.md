@@ -233,9 +233,11 @@ Phase 2: DB integration.
 4.1 Install DB dependencies of SQLAlchemy with
 pip install sqlalchemy psycopg2-binary
 then pip freeze > requirements.txt
+used pip freeze | findstr "sqlalchemy psycopg2-binary"
+pip freeze > requirements.txt
 
 
-
+4.2 Selfnote Had to recreate Venv midproejct as i had to get it off github again as PC wiped due to technical issues.
 
 
 
