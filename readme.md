@@ -239,6 +239,12 @@ pip freeze > requirements.txt
 
 4.2 Selfnote Had to recreate Venv midproejct as i had to get it off github again as PC wiped due to technical issues.
 
+4.3 Database.py 
+Setting up DB connection.
+Engine connects to PostGreSQL.
+SessionLocal creates a session for DB transactions.
+Base is class my models will inherit to map tables.
+We do this to provide a single, reusable DB connection and ensure sessions are propertly managed (committed/rollback) and prepares for creating tables/crud operation.
 
 
  #########################
