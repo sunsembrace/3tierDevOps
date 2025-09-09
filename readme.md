@@ -246,10 +246,22 @@ SessionLocal creates a session for DB transactions.
 Base is class my models will inherit to map tables.
 We do this to provide a single, reusable DB connection and ensure sessions are propertly managed (committed/rollback) and prepares for creating tables/crud operation.
 
-4.4 Define models using SQLAlchemy.
+4.4 Define models using SQLAlchemy. 
 Now need to define my ORM models in models.py to a database model.
 So it'll create a table schema for books in the database so SQLAlchemy uses these models to map python objects to DB tables.
 Aka this is the blueprint for data in my database.
+
+4.5 Had to fgix entire models.py file 
+4.5 Create the tables in db either create_tabples.py script or auto on startup (NEED TO DO)
+Had to fix this entire models.py file as itr defines my SQLAlchemy ORM classes. 
+
+4.6 Making Create_tables.py
+Used Junior standard aka --> Base.metadata.create_all(bind=engine)
+Learning about ALembic migrations to be production standard and might integrate later.
+
+
+4.6 Update CRUD operations to use the DB.
+
 
 
  #########################
@@ -310,3 +322,6 @@ problem: Need to move CRUD logic with in-memory list to own crud file for DB int
 This will help us integrate postgreSQL later so we dont have to refactor everything again.
 
 Problem: Have to convert previous book test list into tables in the db using sqlaclehmy. Therefore have to update CRUD operations to use database so instead of appending into the books = ... [] we use SQLAlchemy sessions.
+
+Problem: Junior lvl not sure how to really create_tables.py files so using simple method like Base.metadata.create_all(bind=engine) to run it once - but feels too suboptimal.
+Solution: Touched on industry standard method using Alembic migrations and PLAN TO INTEGRATE LATER.
